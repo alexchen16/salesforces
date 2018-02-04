@@ -21,13 +21,16 @@ sf = Salesforce(instance_url='https://seclink.my.salesforce.com/', session_id='0
 
 end = datetime.datetime.now(pytz.UTC) # we need to use UTC as salesforce API requires this
 
-response_cases = sf.Case.updated(end - datetime.timedelta(days=1), end)
+response_cases = sf.Case.updated(end - datetime.timedelta(minutes=20), end)
 #print type(response_json)
 
 new_cases = case_list(response_cases)
 
+fields = 'CDC_Milestone_1__c,CDC_Milestone_2__c,CDC_Milestone_1_min__c,CDC_Milestone_2_h__c'
 for new_case in new_cases:
-    print 'new_case',new_case
+    #print 'new_case',new_case
+    print 'ALL',sf.Case.get(new_case)
+    #print 'CDC',sf.Case.get(new_case+'/?fields='+ fields)
 
 
 #response_python = json.loads(response_json)
