@@ -23,21 +23,16 @@ class Database:
             print(e)
             self.connection.rollback()
 
-    def insert_many(self, query):
-        try:
-            print 'query',query
-            self.cursor.executemany(query)
-
-            self.connection.commit()
-        except TypeError as e:
-            print(e)
-            self.connection.rollback()
 
     def query(self, query):
-        cursor = self.connection.cursor( MySQLdb.cursors.DictCursor )
-        cursor.execute(query)
+        try:
+            cursor = self.connection.cursor( MySQLdb.cursors.DictCursor )
+            cursor.execute(query)
+            return cursor.fetchall()
 
-        return cursor.fetchall()
+        except TypeError as e:
+            print(e)
+
 
     def __del__(self):
         self.connection.close()
