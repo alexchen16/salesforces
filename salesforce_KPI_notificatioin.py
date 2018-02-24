@@ -20,7 +20,7 @@ def send_mail(casenumber,createddate,priority,timeleft):
     #from_addr = 'cdc_sh@tom.com'
     #from_addr = 'sh_cdc_monitor@126.com'
     from_addr = ''
-    #password = '$cdcsh123'
+    #password = ''
     password = ''
     to_addr = ['']
     #to_addr = ",".join(to_list)
